@@ -1,13 +1,26 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import api from "../services/api";
 const Login = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await api.post("login/", data);
+      localStorage.setItem("access", response.data.acess);
+      localStorage.setItem("refresh", response.data.refresh);
+      navigate("/");
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
   return (
     <div className="auth-container d-flex align-items-center justify-content-center vh-100">
       <div className="card p-4 shadow-sm">
