@@ -41,9 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',  # Add this for Django REST Framework
-    'api',  # Add this for your custom app
+    # Third party apps
+    'rest_framework',
+    'rest_framework_simplejwt',
     'corsheaders',
+    # My apps
+    'api',
+    
 ]
 
 MIDDLEWARE = [
@@ -130,7 +134,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React frontend origin
 ]
+
+REST_FRAME_WORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES' : [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permission.IsAuthenticated'
+    ]
+}
