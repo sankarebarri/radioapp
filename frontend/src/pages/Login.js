@@ -32,12 +32,20 @@ const Login = () => {
       <div className="card p-4 shadow-sm">
         <h2 className="text-center mb-4">Sign In</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="mb-3">
+          {/* <div className="mb-3">
             <label className="form-label">Email</label>
             <input
               type="email"
               className="form-control"
               {...register("email", { required: "Email is required" })}
+            />
+          </div> */}
+          <div className="mb-3">
+            <label className="form-label">Username</label>
+            <input
+              type="text"
+              className="form-control"
+              {...register("username", { required: "Username is required" })}
             />
           </div>
           <div className="mb-3">

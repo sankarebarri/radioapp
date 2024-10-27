@@ -10,6 +10,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         # fields = ('username', 'first_name', 'last_name', 'email', 'password', 'password2')
         fields = ('username', 'email', 'password')
 
+    # def validate_username(self, value):
+    #     if User.objects.filter(username=value).exists():
+    #         raise serializers.ValidationError('A user with this username already exists.')
+    #     return value
     # def validate(self, data):
     #     if data['password'] != data['password2']:
     #         raise serializers.ValidationError('Passwords do not match')

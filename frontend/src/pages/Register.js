@@ -12,6 +12,12 @@ const Register = () => {
   } = useForm();
 
   const navigate = useNavigate();
+  React.useEffect(() => {
+    // Redirect if logged in
+    if (localStorage.getItem("access")) {
+      navigate("/");
+    }
+  }, [navigate]);
   const password = watch("password");
 
   const onSubmit = async (data) => {
@@ -63,7 +69,7 @@ const Register = () => {
             />
           </div>
           <div className="mb-3">
-            <label className="form-label">Email</label>
+            <label className="form-label">Email or Phone Number</label>
             <input
               type="email"
               className="form-control"
