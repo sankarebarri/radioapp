@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { logout } from "../services/auth";
 
 function Navbar() {
+  const isAuthenticated = !!localStorage.getItem("access");
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
@@ -22,11 +23,16 @@ function Navbar() {
                 Profile
               </Link>
             </li>
-            <li className="nav-item">
-              <button onClick={logout} className="btn btn-outline-danger ms-2">
-                Logout
-              </button>
-            </li>
+            {isAuthenticated && (
+              <li className="nav-item">
+                <button
+                  onClick={logout}
+                  className="btn btn-outline-danger ms-2"
+                >
+                  Logout
+                </button>
+              </li>
+            )}
           </ul>
         </div>
       </div>
