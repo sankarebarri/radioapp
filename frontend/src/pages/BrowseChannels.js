@@ -1,65 +1,60 @@
-import React from "react";
-import ChannelCard from "../components/ChannelCard";
-import ChannelDetailModal from "../components/ChannelDetailModal";
 // src/pages/BrowseChannels.js
-
-const placeholderChannels = [
-  {
-    id: 1,
-    name: "Cool Jazz FM",
-    genre: "Jazz",
-    country: "USA",
-    frequency: "104.3 FM",
-    description: "The best jazz from around the world.",
-    logo: "https://via.placeholder.com/100",
-  },
-  {
-    id: 2,
-    name: "Classic Rock Radio",
-    genre: "Rock",
-    country: "UK",
-    frequency: "98.7 FM",
-    description: "All your favorite classic rock hits.",
-    logo: "https://via.placeholder.com/100",
-  },
-  {
-    id: 3,
-    name: "Global News Network",
-    genre: "News",
-    country: "Global",
-    frequency: "91.5 FM",
-    description: "24/7 news coverage from around the world.",
-    logo: "https://via.placeholder.com/100",
-  },
-];
+import React, { useState, useEffect } from "react";
+import SearchFilter from "../components/SearchFilter";
+import FeaturedChannels from "../components/FeaturedChannels";
+import ChannelsGrid from "../components/ChannelsGrid";
+import "../styles/BrowseChannels.css";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const BrowseChannels = () => {
-  const [selectedChannel, setSelectedChannel] = React.useState(null);
-  const [isModalOpen, setIsModalOPen] = React.useState(false);
+  // Placeholder data for channels
+  const [channels, setChannels] = useState([]);
+  const [filteredChannels, setFilteredChannels] = useState([]);
 
-  const openModal = (channel) => {
-    setSelectedChannel(channel);
-    setIsModalOPen(true);
-  };
+  useEffect(() => {
+    // Fetch channels data from API or placeholder data
+    const fetchChannels = async () => {
+      // Placeholder data for example
+      const exampleChannels = [
+        {
+          id: 1,
+          name: "Jazz Vibes",
+          genre: "Jazz",
+          country: "USA",
+          description: "Smooth jazz 24/7.",
+        },
+        {
+          id: 2,
+          name: "News Hour",
+          genre: "News",
+          country: "UK",
+          description: "Latest global news.",
+        },
+        // Add more example channels
+      ];
+      setChannels(exampleChannels);
+      setFilteredChannels(exampleChannels); // Initially, show all channels
+    };
 
-  const closeModal = () => {
-    setSelectedChannel(null);
-    setIsModalOPen(false);
+    fetchChannels();
+  }, []);
+
+  // Filter channels based on search or filter criteria
+  const handleFilter = (criteria) => {
+    const results = channels.filter((channel) =>
+      channel.name.toLowerCase().includes(criteria.toLowerCase())
+    );
+    setFilteredChannels(results);
   };
 
   return (
-    <div className="container mt-4">
-      <h1>Browse Channels</h1>
-      <div className="row">
-        {placeholderChannels.map((channel) => (
-          <div key={channel.id} className="col-md-4 mb-3">
-            <ChannelCard channel={channel} onOpenModal={openModal} />
-          </div>
-        ))}
-      </div>
-      {isModalOpen && (
-        <ChannelDetailModal channel={selectedChannel} onClose={closeModal} />
-      )}
+    <div className="browse-channels">
+      <Header />
+      <SearchFilter onFilter={handleFilter} />
+      <FeaturedChannels channels={channels.slice(0, 3)} />
+      <ChannelsGrid channels={filteredChannels} />
+      <Footer />
     </div>
   );
 };

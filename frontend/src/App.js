@@ -10,7 +10,6 @@ import ChannelPage from "./pages/ChannelPage";
 const App = () => {
   return (
     <Router>
-      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/browse" element={<BrowseChannels />}></Route>

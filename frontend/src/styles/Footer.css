@@ -1,0 +1,26 @@
+/* src/styles/Footer.css */
+
+.footer {
+    padding: 1.5rem 2rem;
+    text-align: center;
+    background-color: #f7f9fc;
+    color: #7f8c8d;
+  }
+  
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-links a {
+    color: #3498db;
+    text-decoration: none;
+  }
+  
+  .footer p {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+  }
+  

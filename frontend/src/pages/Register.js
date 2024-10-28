@@ -2,7 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
-
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 const Register = () => {
   const {
     register,
@@ -31,14 +32,16 @@ const Register = () => {
   };
 
   return (
-    <div className="auth-container d-flex align-items-center justify-content-center vh-100">
-      <div
-        className="card p-4 shadow-sm"
-        style={{ maxWidth: "400px", width: "100%" }}
-      >
-        <h2 className="text-center mb-4">Create an Account</h2>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          {/* <div className="mb-3">
+    <div>
+      <Header />
+      <div className="auth-container d-flex align-items-center justify-content-center vh-100">
+        <div
+          className="card p-4 shadow-sm"
+          style={{ maxWidth: "400px", width: "100%" }}
+        >
+          <h2 className="text-center mb-4">Create an Account</h2>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            {/* <div className="mb-3">
             <label className="form-label">First Name</label>
             <input
               type="text"
@@ -60,34 +63,34 @@ const Register = () => {
               <small className="text-danger">{errors.name.message}</small>
             )}
           </div> */}
-          <div className="mb-3">
-            <label className="form-label">Username</label>
-            <input
-              type="text"
-              className="form-control"
-              {...register("username", { required: "Username is required" })}
-            />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Email or Phone Number</label>
-            <input
-              type="email"
-              className="form-control"
-              {...register("email", { required: "Email is required" })}
-            />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Enter your password"
-              {...register("password", {
-                required: "password is required",
-              })}
-            />
-          </div>
-          {/* <div className="mb-3">
+            <div className="mb-3">
+              <label className="form-label">Username</label>
+              <input
+                type="text"
+                className="form-control"
+                {...register("username", { required: "Username is required" })}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Email or Phone Number</label>
+              <input
+                type="email"
+                className="form-control"
+                {...register("email", { required: "Email is required" })}
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Enter your password"
+                {...register("password", {
+                  required: "password is required",
+                })}
+              />
+            </div>
+            {/* <div className="mb-3">
             <label className="form-label">Verify Password</label>
             <input
               type="password"
@@ -100,16 +103,18 @@ const Register = () => {
               })}
             />
           </div> */}
-          <button type="submit" className="btn btn-primary w-100">
-            Sign Up
-          </button>
-        </form>
-        <div className="text-center mt-3">
-          <small>
-            Already have an account? <Link to="/login">Sing In</Link>
-          </small>
+            <button type="submit" className="btn btn-primary w-100">
+              Sign Up
+            </button>
+          </form>
+          <div className="text-center mt-3">
+            <small>
+              Already have an account? <Link to="/login">Sing In</Link>
+            </small>
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -1,0 +1,46 @@
+/* src/styles/Header.css */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #f7f9fc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3498db;
+    cursor: pointer;
+  }
+  
+  .header nav {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .header nav button,
+  .header nav .btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .header nav .btn.primary {
+    background-color: #3498db;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+  }
+  
+  .header nav .btn.secondary {
+    background-color: #ecf0f1;
+    color: #3498db;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+  }
+  
