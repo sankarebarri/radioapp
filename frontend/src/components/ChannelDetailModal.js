@@ -2,6 +2,7 @@ import React from "react";
 
 const ChannelDetailModal = ({ channel, onClose }) => {
   const [showLoginPrompt, setShowLoginPrompt] = React.useState(false);
+
   const handleFollowClick = () => {
     setShowLoginPrompt(true);
     setTimeout(() => setShowLoginPrompt(false), 3000);

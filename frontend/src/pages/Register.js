@@ -23,7 +23,7 @@ const Register = () => {
   const onSubmit = async (data) => {
     try {
       const response = await api.post("register/", data);
-      console.log("API Response:", response.data);
+      //   console.log("API Response:", response.data);
       navigate("/login");
     } catch (error) {
       console.error("Registration error:", error);
