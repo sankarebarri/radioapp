@@ -1,25 +1,114 @@
 /* src/styles/ChannelsGrid.css */
 
 .channels-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    padding: 1rem;
-  }
-  
-  .channel-card {
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .btn.listen-now {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-  }
-  
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+/* Link styling */
+.channel-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Card styling */
+.channel-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 320px;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #ffffff;
+}
+
+.channel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* Header with inline name and logo */
+.channel-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.channel-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.channel-name {
+  font-size: 1.3rem;
+  color: #2c3e50;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Content layout */
+.channel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Info row layout */
+.channel-info {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 0.5rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Description text */
+.description {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Button styling */
+.btn.listen-now {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: fit-content;
+  margin-top: auto;
+}
+
+.btn.listen-now:hover {
+  background-color: #2980b9;
+}

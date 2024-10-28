@@ -1,16 +1,27 @@
 /* src/styles/SearchFilter.css */
 
 .search-filter {
-    display: flex;
-    justify-content: center;
-    margin: 1rem 0;
-  }
-  
-  .search-input {
-    width: 100%;
-    max-width: 400px;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0;
+  background-color: #f5f7fa;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  max-width: 500px;
+  margin: 1.5rem auto;
+}
+
+.search-icon {
+  color: #7f8c8d;
+  margin-right: 0.5rem;
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: none;
+}

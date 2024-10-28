@@ -1,5 +1,7 @@
 // src/components/SearchFilter.js
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "../styles/SearchFilter.css";
 
 const SearchFilter = ({ onFilter }) => {
@@ -8,11 +10,12 @@ const SearchFilter = ({ onFilter }) => {
   const handleSearch = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
-    onFilter(term); // Send search term to parent component
+    onFilter(term);
   };
 
   return (
     <div className="search-filter">
+      <FontAwesomeIcon icon={faSearch} className="search-icon" />
       <input
         type="text"
         value={searchTerm}
@@ -20,7 +23,6 @@ const SearchFilter = ({ onFilter }) => {
         placeholder="Search channels..."
         className="search-input"
       />
-      {/* Future: Add dropdowns for genre, country filters */}
     </div>
   );
 };

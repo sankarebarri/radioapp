@@ -15,7 +15,7 @@ const App = () => {
         <Route path="/browse" element={<BrowseChannels />}></Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="channels/:id" element={<ChannelPage />}></Route>
+        <Route path="channel/:id" element={<ChannelPage />}></Route>
       </Routes>
     </Router>
   );
