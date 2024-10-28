@@ -1,0 +1,168 @@
+/* src/styles/Home.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f7f9fc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #3498db;
+  cursor: pointer;
+}
+
+.header nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.header nav button,
+.header nav .btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  font-weight: bold;
+}
+
+.header nav .btn.primary {
+  background-color: #3498db;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.header nav .btn.secondary {
+  background-color: #ecf0f1;
+  color: #3498db;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #f0f4f8;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  margin: 1rem 0;
+}
+
+.hero .btn.primary {
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  color: white;
+  background-color: #3498db;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+/* Features Section */
+.features {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.features h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+}
+
+.feature {
+  text-align: center;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature h3 {
+  font-size: 1.2rem;
+  color: #3498db;
+  margin: 0.5rem 0;
+}
+
+.feature p {
+  font-size: 0.95rem;
+  color: #7f8c8d;
+}
+
+/* Call-to-Action Banner */
+.cta-banner {
+  text-align: center;
+  padding: 2rem;
+  background-color: #3498db;
+  color: white;
+  margin: 2rem 0;
+}
+
+.cta-banner h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.cta-banner .btn.primary {
+  padding: 0.6rem 1.2rem;
+  background-color: white;
+  color: #3498db;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+}
+
+/* Footer */
+.footer {
+  padding: 1.5rem 2rem;
+  text-align: center;
+  background-color: #f7f9fc;
+  color: #7f8c8d;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.footer-links a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.footer p {
+  font-size: 0.85rem;
+  color: #7f8c8d;
+}
