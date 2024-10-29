@@ -1,150 +1,66 @@
 /* src/styles/ChannelPage.css */
 
 .channel-page {
-  max-width: 800px;
-  margin: auto;
-  color: #333;
-  font-family: 'Arial', sans-serif;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
-/* Hero Section */
+/* Hero Section with Gradient and Overlay */
 .hero-section {
+  position: relative;
   display: flex;
   align-items: center;
-  padding: 2rem;
-  background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
-  color: white;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  position: relative;
-  overflow: hidden;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #3498db, #9b59b6);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: #ffffff;
 }
 
+/* Overlay to Improve Text Contrast */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3); /* Dark overlay for better contrast */
+  border-radius: 10px;
+  z-index: 1;
+}
+
+/* Content within Hero Section */
 .channel-logo {
   width: 100px;
   height: 100px;
+  border-radius: 10px;
   object-fit: cover;
-  border-radius: 50%;
-  margin-right: 1rem;
+  position: relative;
+  z-index: 2; /* Keep above overlay */
+}
+
+.channel-info {
+  position: relative;
+  z-index: 2;
 }
 
 .channel-info h1 {
-  font-size: 2.2rem;
-  margin: 0;
-}
-
-.channel-details {
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
-
-/* Action Buttons */
-.action-buttons .btn {
-  margin-right: 10px;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-/* Hover Effect for Buttons */
-.btn-primary:hover {
-  background-color: #182848;
-  color: white;
-}
-
-.btn-outline-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: white;
-}
-
-/* Recent Broadcasts and Schedule Styling with Differentiated Typography */
-.broadcast-carousel {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  padding-bottom: 1rem;
-}
-
-.broadcast-card {
-  flex: 0 0 auto;
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  width: 220px;
-  color: #182848;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.broadcast-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Typography in Broadcast Card */
-.broadcast-card h5 {
-  color: #4b6cb7;
+  font-size: 2rem;
   font-weight: bold;
+  color: #ffffff;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow for readability */
   margin-bottom: 0.5rem;
 }
 
-.broadcast-card p {
-  font-size: 0.9rem;
-  color: #333;
-  opacity: 0.8;
-}
-
-.broadcast-card small {
-  color: #777;
-  font-size: 0.8rem;
-}
-
-/* Schedule Timeline */
-.schedule-timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.schedule-item {
-  background: #e8f0fe;
-  padding: 1rem;
-  border-radius: 8px;
-  color: #182848;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.schedule-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Typography in Schedule Item */
-.schedule-item h5 {
-  color: #4b6cb7;
-  font-weight: bold;
+.channel-details, .followers, .channel-description {
+  color: #f1f1f1;
+  font-size: 1rem;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4);
   margin-bottom: 0.5rem;
-}
-
-.schedule-item p {
-  font-size: 0.9rem;
-  color: #333;
-  opacity: 0.8;
-}
-
-.schedule-item small {
-  color: #555;
-  font-size: 0.8rem;
-}
-
-/* See More Button */
-.see-more {
-  color: #4b6cb7;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: color 0.3s ease;
-}
-
-.see-more:hover {
-  color: #182848;
 }

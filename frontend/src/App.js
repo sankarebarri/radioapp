@@ -6,6 +6,7 @@ import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
 import BrowseChannels from "./pages/BrowseChannels";
 import ChannelPage from "./pages/ChannelPage";
+import PlayingPage from "./pages/PlayingPage";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="channel/:id" element={<ChannelPage />}></Route>
+        <Route path="play/:broadcastId" element={<PlayingPage />}></Route>
       </Routes>
     </Router>
   );
