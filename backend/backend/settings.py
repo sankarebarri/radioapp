@@ -47,6 +47,10 @@ INSTALLED_APPS = [
     'corsheaders',
     # My apps
     'api',
+    'users',
+    'channels',
+    'broadcasts',
+    'analytics'
     
 ]
 
