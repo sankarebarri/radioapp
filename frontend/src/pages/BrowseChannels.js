@@ -5,6 +5,8 @@ import FeaturedChannels from "../components/FeaturedChannels";
 import ChannelsGrid from "../components/ChannelsGrid";
 import placeholderChannels from "../data/placeholderChannels"; // Assuming this file is in the data folder
 import "../styles/BrowseChannels.css";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const BrowseChannels = () => {
   const [channels, setChannels] = useState([]);
@@ -24,9 +26,11 @@ const BrowseChannels = () => {
 
   return (
     <div className="browse-channels">
+      <Header />
       <SearchFilter onFilter={handleFilter} />
       <FeaturedChannels channels={channels.slice(0, 3)} />
       <ChannelsGrid channels={filteredChannels} />
+      <Footer />
     </div>
   );
 };

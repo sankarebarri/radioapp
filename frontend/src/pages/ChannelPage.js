@@ -10,6 +10,8 @@ import {
   faCalendarAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import "../styles/ChannelPage.css";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const ChannelPage = () => {
   const navigate = useNavigate();
@@ -88,93 +90,98 @@ const ChannelPage = () => {
   if (!channel) return <p>Loading...</p>;
 
   return (
-    <div className="channel-page">
-      {/* Hero Section */}
-      <div className="hero-section">
-        <img
-          src={channel.logo}
-          alt={`${channel.name} logo`}
-          className="channel-logo"
-        />
-        <div className="channel-info">
-          <h1>{channel.name}</h1>
-          <p className="channel-details">
-            <strong>Genre:</strong> {channel.genre} | <strong>Country:</strong>{" "}
-            {channel.country} | <strong>Frequency:</strong> {channel.frequency}
-          </p>
-          <p className="followers">
-            <strong>Listeners:</strong> {followers.toLocaleString()}
-          </p>
-          <p className="channel-description">{channel.description}</p>
+    <div>
+      <Header />
+      <div className="channel-page">
+        {/* Hero Section */}
+        <div className="hero-section">
+          <img
+            src={channel.logo}
+            alt={`${channel.name} logo`}
+            className="channel-logo"
+          />
+          <div className="channel-info">
+            <h1>{channel.name}</h1>
+            <p className="channel-details">
+              <strong>Genre:</strong> {channel.genre} |{" "}
+              <strong>Country:</strong> {channel.country} |{" "}
+              <strong>Frequency:</strong> {channel.frequency}
+            </p>
+            <p className="followers">
+              <strong>Listeners:</strong> {followers.toLocaleString()}
+            </p>
+            <p className="channel-description">{channel.description}</p>
+          </div>
         </div>
-      </div>
 
-      {/* Action Buttons */}
-      <div className="action-buttons">
-        <button
-          className="btn btn-primary me-2"
-          // onClick={() => navigate(`/play/${live.id}`)}
-        >
-          <FontAwesomeIcon icon={faPlay} /> Listen Now
-        </button>
-        <button
-          className="btn btn-outline-secondary me-2"
-          onClick={handleFollowClick}
-        >
-          <FontAwesomeIcon icon={faHeart} />{" "}
-          {channel.isFollowing ? "Unfollow" : "Follow"}
-        </button>
-        <button className="btn btn-outline-secondary">
-          <FontAwesomeIcon icon={faShare} /> Share
-        </button>
-      </div>
+        {/* Action Buttons */}
+        <div className="action-buttons">
+          <button
+            className="btn btn-primary me-2"
+            // onClick={() => navigate(`/play/${live.id}`)}
+          >
+            <FontAwesomeIcon icon={faPlay} /> Listen Now
+          </button>
+          <button
+            className="btn btn-outline-secondary me-2"
+            onClick={handleFollowClick}
+          >
+            <FontAwesomeIcon icon={faHeart} />{" "}
+            {channel.isFollowing ? "Unfollow" : "Follow"}
+          </button>
+          <button className="btn btn-outline-secondary">
+            <FontAwesomeIcon icon={faShare} /> Share
+          </button>
+        </div>
 
-      {showLoginPrompt && (
-        <p className="login-prompt text-danger">
-          Please log in to follow channels.
-        </p>
-      )}
+        {showLoginPrompt && (
+          <p className="login-prompt text-danger">
+            Please log in to follow channels.
+          </p>
+        )}
 
-      {/* Recent Broadcasts */}
-      <div className="recent-broadcasts mb-5">
-        <h3>Recent Broadcasts</h3>
-        <div className="broadcast-carousel">
-          {channel.recentBroadcasts.map((broadcast) => (
-            <div key={broadcast.id} className="broadcast-card">
-              <h5>{broadcast.title}</h5>
-              <p>{broadcast.description}</p>
-              <small>{broadcast.timestamp}</small>
-              <div className="mt-2">
-                <button
-                  className="btn btn-sm btn-primary me-2"
-                  onClick={() => navigate(`/play/${broadcast.id}`)}
-                >
-                  <FontAwesomeIcon icon={faPlay} /> Play
-                </button>
-                <button className="btn btn-sm btn-outline-secondary">
-                  <FontAwesomeIcon icon={faDownload} /> Download
-                </button>
+        {/* Recent Broadcasts */}
+        <div className="recent-broadcasts mb-5">
+          <h3>Recent Broadcasts</h3>
+          <div className="broadcast-carousel">
+            {channel.recentBroadcasts.map((broadcast) => (
+              <div key={broadcast.id} className="broadcast-card">
+                <h5>{broadcast.title}</h5>
+                <p>{broadcast.description}</p>
+                <small>{broadcast.timestamp}</small>
+                <div className="mt-2">
+                  <button
+                    className="btn btn-sm btn-primary me-2"
+                    onClick={() => navigate(`/play/${broadcast.id}`)}
+                  >
+                    <FontAwesomeIcon icon={faPlay} /> Play
+                  </button>
+                  <button className="btn btn-sm btn-outline-secondary">
+                    <FontAwesomeIcon icon={faDownload} /> Download
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Upcoming Schedule */}
-      <div className="upcoming-schedule">
-        <h3>Upcoming Schedule</h3>
-        <div className="schedule-timeline">
-          {channel.upcomingBroadcasts.map((broadcast) => (
-            <div key={broadcast.id} className="schedule-item">
-              <h5>{broadcast.title}</h5>
-              <p>{broadcast.description}</p>
-              <small>
-                <FontAwesomeIcon icon={faCalendarAlt} /> {broadcast.time}
-              </small>
-            </div>
-          ))}
+        {/* Upcoming Schedule */}
+        <div className="upcoming-schedule">
+          <h3>Upcoming Schedule</h3>
+          <div className="schedule-timeline">
+            {channel.upcomingBroadcasts.map((broadcast) => (
+              <div key={broadcast.id} className="schedule-item">
+                <h5>{broadcast.title}</h5>
+                <p>{broadcast.description}</p>
+                <small>
+                  <FontAwesomeIcon icon={faCalendarAlt} /> {broadcast.time}
+                </small>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
