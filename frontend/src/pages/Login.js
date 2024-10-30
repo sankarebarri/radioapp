@@ -30,7 +30,7 @@ const Login = () => {
       const response = await api.post("login/", data);
       setAccessToken(response.data.access);
       setRefreshToken(response.data.refresh);
-      navigate("/");
+      navigate("/profile");
     } catch (error) {
       if (error.response && error.response.data) {
         // Clear previous general error

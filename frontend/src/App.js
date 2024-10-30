@@ -11,6 +11,7 @@ import ChannelOwnerPage from "./pages/ChannelOwnerPage";
 import { AuthProvider } from "./context/AuthContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Profile from "./pages/Profile";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="channel/:id" element={<ChannelPage />}></Route>
           <Route path="play/:broadcastId" element={<PlayingPage />}></Route>
           <Route path="/channel-owner" element={<ChannelOwnerPage />} />
+          <Route path="/profile" element={<Profile />}></Route>
         </Routes>
         <Footer />
       </Router>
