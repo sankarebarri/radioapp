@@ -15,7 +15,7 @@ const Register = () => {
   const navigate = useNavigate();
   React.useEffect(() => {
     // Redirect if logged in
-    if (localStorage.getItem("access")) {
+    if (localStorage.getItem("access_token")) {
       navigate("/");
     }
   }, [navigate]);

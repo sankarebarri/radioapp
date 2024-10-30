@@ -14,7 +14,7 @@ const Login = () => {
 
   React.useEffect(() => {
     // Redirect if already logged in
-    if (localStorage.getItem("access")) {
+    if (localStorage.getItem("access_token")) {
       navigate("/");
     }
   }, [navigate]);
@@ -22,8 +22,8 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const response = await api.post("login/", data);
-      localStorage.setItem("access", response.data.access);
-      localStorage.setItem("refresh", response.data.refresh);
+      localStorage.setItem("access_token", response.data.access);
+      localStorage.setItem("refresh_token", response.data.refresh);
       navigate("/");
     } catch (error) {
       console.error("This is a Login error:", error);
