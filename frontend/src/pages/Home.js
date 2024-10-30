@@ -10,11 +10,9 @@ import WelcomeAudio from "../components/WelecomeAudio";
 const Home = () => {
   return (
     <div>
-      <Header />
       <Hero />
       <Features />
       <CTABanner />
-      <Footer />
       {/* <WelcomeAudio /> */}
     </div>
   );

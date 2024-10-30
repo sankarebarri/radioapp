@@ -26,7 +26,6 @@ const PlayingPage = () => {
 
   return (
     <div>
-      <Header />
       <div className="playing-page">
         <BroadcastInfo
           title="Jazz Classics"
@@ -63,7 +62,6 @@ const PlayingPage = () => {
         />
         <AdditionalControls />
       </div>
-      <Footer />
     </div>
   );
 };

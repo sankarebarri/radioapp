@@ -26,11 +26,9 @@ const BrowseChannels = () => {
 
   return (
     <div className="browse-channels">
-      <Header />
       <SearchFilter onFilter={handleFilter} />
       <FeaturedChannels channels={channels.slice(0, 3)} />
       <ChannelsGrid channels={filteredChannels} />
-      <Footer />
     </div>
   );
 };

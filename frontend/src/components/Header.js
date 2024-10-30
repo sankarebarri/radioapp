@@ -1,25 +1,27 @@
 // src/components/Header.js
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
 import "../styles/Header.css";
 
 const Header = () => {
   const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+  // const [isAuthenticated, setIsAuthenticated] = React.useState(false);
 
-  React.useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    setIsAuthenticated(!!token); // Set true if token exists, false otherwise
-  }, []);
+  // React.useEffect(() => {
+  //   const token = localStorage.getItem("access");
+  //   setIsAuthenticated(!!token); // Set true if token exists, false otherwise
+  // }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    localStorage.removeItem("refresh_token");
+  // const handleLogout = () => {
+  //   localStorage.removeItem("access");
+  //   localStorage.removeItem("refresh");
 
-    setIsAuthenticated(false);
-    navigate("/");
-  };
-
+  //   setIsAuthenticated(false);
+  //   navigate("/");
+  // };
+  const { isAuthenticated, logout } = useAuth();
   return (
     <header className="header">
       <div className="logo" onClick={() => navigate("/")}>
@@ -42,7 +44,7 @@ const Header = () => {
             </button>
           </>
         ) : (
-          <button className="btn primary" onClick={handleLogout}>
+          <button className="btn primary" onClick={logout}>
             Logout
           </button>
         )}

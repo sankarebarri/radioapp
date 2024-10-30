@@ -15,7 +15,7 @@ const Register = () => {
   const navigate = useNavigate();
   React.useEffect(() => {
     // Redirect if logged in
-    if (localStorage.getItem("access_token")) {
+    if (localStorage.getItem("access")) {
       navigate("/");
     }
   }, [navigate]);
@@ -33,7 +33,6 @@ const Register = () => {
 
   return (
     <div>
-      <Header />
       <div className="auth-container d-flex align-items-center justify-content-center vh-100">
         <div
           className="card p-4 shadow-sm"
@@ -114,7 +113,6 @@ const Register = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

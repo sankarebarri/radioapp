@@ -4,6 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import {
+  getAccessToken,
+  setAccessToken,
+  setRefreshToken,
+} from "../utils/token";
 const Login = () => {
   const {
     register,
@@ -14,7 +19,7 @@ const Login = () => {
 
   React.useEffect(() => {
     // Redirect if already logged in
-    if (localStorage.getItem("access_token")) {
+    if (getAccessToken()) {
       navigate("/");
     }
   }, [navigate]);
@@ -22,8 +27,8 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const response = await api.post("login/", data);
-      localStorage.setItem("access_token", response.data.access);
-      localStorage.setItem("refresh_token", response.data.refresh);
+      setAccessToken(response.data.access);
+      setRefreshToken(response.data.refresh);
       navigate("/");
     } catch (error) {
       console.error("This is a Login error:", error);
@@ -31,7 +36,6 @@ const Login = () => {
   };
   return (
     <div>
-      <Header />
       <div className="auth-container d-flex align-items-center justify-content-center vh-100">
         <div className="card p-4 shadow-sm">
           <h2 className="text-center mb-4">Sign In</h2>
@@ -74,7 +78,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

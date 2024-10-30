@@ -91,7 +91,6 @@ const ChannelPage = () => {
 
   return (
     <div>
-      <Header />
       <div className="channel-page">
         {/* Hero Section */}
         <div className="hero-section">
@@ -181,7 +180,6 @@ const ChannelPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
