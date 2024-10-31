@@ -12,7 +12,7 @@ const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = React.useState(
-    !!getAccessToken()
+    !!getAccessToken() && !!getRefreshToken() // Check both tokens
   );
 
   const login = (accessToken, refreshToken) => {
@@ -28,7 +28,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   React.useEffect(() => {
-    setIsAuthenticated(!!getAccessToken());
+    // Update authentication state on initialization or if tokens change
+    setIsAuthenticated(!!getAccessToken() && !!getRefreshToken());
   }, []);
 
   return (
@@ -37,4 +38,5 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
 export const useAuth = () => React.useContext(AuthContext);

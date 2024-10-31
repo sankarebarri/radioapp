@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../services/api";
-import {
-  getAccessToken,
-  setAccessToken,
-  setRefreshToken,
-} from "../utils/token";
+import { useAuth } from "../context/AuthContext"; // Import useAuth to access AuthContext
 
 const Login = () => {
   const {
@@ -17,19 +13,19 @@ const Login = () => {
   } = useForm();
   const navigate = useNavigate();
   const [generalError, setGeneralError] = useState(""); // State for general errors
+  const { login, isAuthenticated } = useAuth(); // Destructure login and isAuthenticated from useAuth
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Redirect if already logged in
-    if (getAccessToken()) {
+    if (isAuthenticated) {
       navigate("/");
     }
-  }, [navigate]);
+  }, [isAuthenticated, navigate]); // Depend on isAuthenticated
 
   const onSubmit = async (data) => {
     try {
       const response = await api.post("login/", data);
-      setAccessToken(response.data.access);
-      setRefreshToken(response.data.refresh);
+      login(response.data.access, response.data.refresh); // Use login function to set tokens
       navigate("/profile");
     } catch (error) {
       if (error.response && error.response.data) {
@@ -38,16 +34,13 @@ const Login = () => {
 
         // Handle specific field errors
         if (error.response.data.detail) {
-          // If error is a general login issue (e.g., invalid credentials)
           setGeneralError("Invalid username or password. Please try again.");
         } else {
-          // Display backend field-specific validation errors
           for (const [key, value] of Object.entries(error.response.data)) {
             setError(key, { type: "manual", message: value[0] });
           }
         }
       } else {
-        // Network or unknown errors
         setGeneralError("An unexpected error occurred. Please try again.");
       }
     }
@@ -58,7 +51,6 @@ const Login = () => {
       <div className="card p-4 shadow-sm">
         <h2 className="text-center mb-4">Sign In</h2>
 
-        {/* Display a general error message if there is one */}
         {generalError && (
           <div className="alert alert-danger text-center">{generalError}</div>
         )}

@@ -6,11 +6,13 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    console.log("Request URL:", config.baseURL + config.url);
     const token = localStorage.getItem("access_token");
+    // console.log("Current Access Token:", token); // Confirm token presence
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
+      // console.log("Authorization Header:", config.headers["Authorization"]); // Log Authorization header
     }
+    // console.log("Request URL:", config.baseURL + config.url); // Log full request URL
     return config;
   },
   (error) => Promise.reject(error)
