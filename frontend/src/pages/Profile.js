@@ -1,6 +1,10 @@
+// src/pages/Profile.js
 import React from "react";
 import api from "../services/api";
 import { getAccessToken } from "../utils/token";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import "../styles/Profile.css"; // Link to custom styling
 
 const Profile = () => {
   const [profile, setProfile] = React.useState(null);
@@ -15,36 +19,41 @@ const Profile = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-        // console.log("Profile data:", response.data);
-
         setProfile(response.data);
       } catch (error) {
-        // setError("Failed to fetch profile. Please check your permissions.");
-        // console.error("Failed to fetch profile:", error);
+        setError("Failed to fetch profile. Please check your permissions.");
+        console.error("Failed to fetch profile:", error);
       }
     };
     fetchProfile();
   }, []);
-  // if (error) return <p>{error}</p>;
+
+  if (error) return <p>{error}</p>;
   if (!profile) return <p>Loading...</p>;
 
   return (
     <div className="profile-page">
-      <h1 className="text-center">{profile.username}'s Profile</h1>
-      {profile.profile_image && (
-        <img
-          src={profile.profile_image}
-          alt={`${profile.username}'s profile`}
-        />
-      )}
-      <p>
-        <strong>Bio:</strong> {profile.bio}
-      </p>
-      <p>
-        <strong>Joined:</strong>
-        {new Date(profile.created_at).toLocaleDateString()}
-      </p>
+      <div className="profile-card">
+        <div className="profile-image-container">
+          <img
+            src={profile.profile_image || "https://via.placeholder.com/150"}
+            alt={`${profile.username}'s profile`}
+            className="profile-image"
+          />
+        </div>
+        <div className="profile-info">
+          <h1 className="profile-username">
+            <FontAwesomeIcon icon={faUser} /> {profile.username}
+          </h1>
+          <p className="profile-bio">{profile.bio || "No bio available"}</p>
+          <p className="profile-joined">
+            <FontAwesomeIcon icon={faCalendarAlt} /> <strong>Joined:</strong>{" "}
+            {new Date(profile.created_at).toLocaleDateString()}
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
+
 export default Profile;

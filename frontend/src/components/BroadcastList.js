@@ -1,20 +1,25 @@
-// src/components/BroadcastList.js
 import React from "react";
-import BroadcastCard from "./BroadcastCard";
+import api from "../services/api";
 
-const BroadcastList = ({ broadcasts, title, navigate }) => (
-  <div className="broadcast-list">
-    <h3>{title}</h3>
-    <div className="broadcast-carousel">
-      {broadcasts.map((broadcast) => (
-        <BroadcastCard
-          key={broadcast.id}
-          broadcast={broadcast}
-          navigate={navigate}
-        />
-      ))}
+const BroadcastList = () => {
+  const [broadcast, setBroadcast] = React.useState("");
+  React.useEffect(() => {
+    const fetchBroadcasts = async () => {
+      try {
+        const response = await api.get("/broadcasts/");
+        console.log(response.data);
+        setBroadcast("It's connecting to the BE");
+      } catch (error) {
+        setBroadcast("Not connecting to the BE");
+        console.error("Can't retreive broadcast");
+      }
+    };
+    fetchBroadcasts();
+  }, []);
+  return (
+    <div>
+      <p>{broadcast}</p>
     </div>
-  </div>
-);
-
+  );
+};
 export default BroadcastList;

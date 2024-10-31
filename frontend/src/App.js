@@ -12,6 +12,7 @@ import { AuthProvider } from "./context/AuthContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
+import BroadcastList from "./components/BroadcastList";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           <Route path="play/:broadcastId" element={<PlayingPage />}></Route>
           <Route path="/channel-owner" element={<ChannelOwnerPage />} />
           <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/broadcasts" element={<BroadcastList />} />
         </Routes>
         <Footer />
       </Router>
