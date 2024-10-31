@@ -9,7 +9,7 @@ from .serializers import UserProfileSerializer
 
 
 class UserProfileView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
     # authentication_classes = (TokenAuthentication,)
     # permission_classes = (IsAuthenticated,)
     
@@ -18,14 +18,11 @@ class UserProfileView(APIView):
         # print("Received data:", request.data)
         # print("Authorization Header:", request.headers.get("Authorization"))
         # print("User from request:", request.user)
-        if request.user.is_authenticated:
-            print("Authenticated")
-            try:
-                profile = UserProfile.objects.get(user=request.user)
-                serializer = UserProfileSerializer(profile)
-                return Response(serializer.data)
-            except UserProfile.DoesNotExist:
-                return Response({"error": "User profile not found"}, status=404)
-        else:
-            print("User not authenticated")
-            return Response({"error": "Authentication failed"}, status=403)
+        try:
+            profile = UserProfile.objects.get(user=request.user)
+            # profile = request.user.profile
+            # profile, created = UserProfile.objects.get_or_create(user=request.user)
+            serializer = UserProfileSerializer(profile)
+            return Response(serializer.data)
+        except UserProfile.DoesNotExist:
+            return Response({"error": "User profile not found"}, status=404)

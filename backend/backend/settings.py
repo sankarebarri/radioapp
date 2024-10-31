@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
+    'django_extensions',
     # My apps
     'api',
     'users',
@@ -142,12 +143,12 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React frontend origin
 ]
 
-REST_FRAME_WORK = {
+REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES' : [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permission.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticated',
     ]
 }
 
@@ -157,8 +158,3 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'AUTH_HEADER_TYPES': ('Bearer',),  # Ensure this is 'Bearer'
 }
-
-AUTHENTICATION_BACKENDS = [
-    'api.authentication.CustomAuthBackend',  # Custom backend path
-    'django.contrib.auth.backends.ModelBackend',  # Keep Django's default backend
-]
