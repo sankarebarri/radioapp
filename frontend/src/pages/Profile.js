@@ -15,25 +15,26 @@ const Profile = () => {
             Authorization: `Bearer ${token}`,
           },
         });
+        // console.log("Profile data:", response.data);
 
         setProfile(response.data);
       } catch (error) {
-        setError("Failed to fetch profile. Please check your permissions.");
-        console.error("Failed to fetch profile:", error);
+        // setError("Failed to fetch profile. Please check your permissions.");
+        // console.error("Failed to fetch profile:", error);
       }
     };
     fetchProfile();
   }, []);
-  if (error) return <p>{error}</p>;
+  // if (error) return <p>{error}</p>;
   if (!profile) return <p>Loading...</p>;
 
   return (
     <div className="profile-page">
-      <h1>{profile.user.username}'s Profile</h1>
+      <h1 className="text-center">{profile.username}'s Profile</h1>
       {profile.profile_image && (
         <img
           src={profile.profile_image}
-          alt={`${profile.user.username}'s profile`}
+          alt={`${profile.username}'s profile`}
         />
       )}
       <p>
