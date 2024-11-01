@@ -1,0 +1,64 @@
+/* In BrowseChannels.css */
+.accordion {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  
+  .accordion-header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    font-size: 18px; /* Increased font size for better visibility */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .accordion-header:hover {
+    background-color: #0056b3;
+  }
+  
+  .filter-options {
+    padding: 15px;
+    background-color: #f9f9f9;
+  }
+  
+  .search-input {
+    width: calc(100% - 16px); /* Adjust to account for padding */
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border 0.3s ease; /* Transition for input focus */
+  }
+  
+  .search-input:focus {
+    border-color: #007bff; /* Change border color on focus */
+  }
+  
+  .active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+  }
+  
+  .filter-chip {
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    padding: 5px 10px;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter-chip button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  

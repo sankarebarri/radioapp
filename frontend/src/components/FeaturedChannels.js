@@ -24,7 +24,7 @@ const FeaturedChannels = ({ channels }) => {
             <div className="channel-card">
               <div className="channel-header">
                 <img
-                  src={channel.logo}
+                  src={channel.logo_url}
                   alt={`${channel.name} logo`}
                   className="channel-logo"
                 />

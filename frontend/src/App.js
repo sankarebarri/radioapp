@@ -13,6 +13,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import BroadcastList from "./components/BroadcastList";
+import FollowedBroadcastsPage from "./pages/FollowedBroadcastsPage";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/channel-owner" element={<ChannelOwnerPage />} />
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/broadcasts" element={<BroadcastList />} />
+          <Route path="/broadcasts-page" element={<FollowedBroadcastsPage />} />
         </Routes>
         <Footer />
       </Router>

@@ -22,7 +22,7 @@ const ChannelsGrid = ({ channels }) => {
           <div className="channel-card">
             <div className="channel-header">
               <img
-                src={channel.logo}
+                src={channel.logo_url}
                 alt={`${channel.name} logo`}
                 className="channel-logo"
               />
@@ -33,7 +33,7 @@ const ChannelsGrid = ({ channels }) => {
                 <div className="info-row">
                   <div className="info-item">
                     <FontAwesomeIcon icon={faBroadcastTower} />{" "}
-                    {channel.frequency}
+                    {channel.frequency} FM
                   </div>
                   <div className="info-item">
                     <FontAwesomeIcon icon={faMusic} /> {channel.genre}
