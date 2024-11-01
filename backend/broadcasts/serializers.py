@@ -3,7 +3,7 @@ from .models import Broadcast
 
 class BroadcastSerializer(serializers.ModelSerializer):
     class Meta:
-        models = Broadcast
+        model = Broadcast
         fields = [
             'id',
             'title',

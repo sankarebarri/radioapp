@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django_extensions',
     # My apps
     'api',
-    'users',
+    'users.apps.UsersConfig',
     'channels',
     'broadcasts',
     'analytics'

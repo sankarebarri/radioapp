@@ -24,3 +24,15 @@ class Channel(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.genre} ({self.country})"
+
+
+class UserChannel(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="following_channels")
+    channel = models.ForeignKey(Channel, on_delete=models.CASCADE, related_name="followers")
+    followed_at = models.DateTimeField(auto_now_add=True) 
+
+    class Meta:
+        unique_together = ("user", "channel") # Ensure each user can only follow a channel once
+
+    def __str__(self):
+        return f"{self.user.username} follows {self.channel.name}"
