@@ -1,5 +1,5 @@
 // src/components/SearchFilter.js
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -7,17 +7,13 @@ import "../styles/SearchFilter.css";
 
 const SearchFilter = ({ onFilter }) => {
   const { register, watch } = useForm();
+
+  // Watch the search term
   const searchTerm = watch("searchTerm");
 
-  // Debounce function
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      onFilter(searchTerm || ""); // Call onFilter after debounce delay
-    }, 300); // Adjust delay time as needed
-
-    return () => {
-      clearTimeout(handler); // Clear the timeout if searchTerm changes
-    };
+  // Call onFilter whenever the searchTerm changes
+  React.useEffect(() => {
+    onFilter(searchTerm || ""); // Call onFilter with the search term, default to empty if undefined
   }, [searchTerm, onFilter]);
 
   return (

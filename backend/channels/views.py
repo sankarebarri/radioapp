@@ -23,3 +23,9 @@ class ChannelListView(generics.ListAPIView):
     queryset = Channel.objects.all()
     serializer_class = ChannelSerializer
     permission_classes = [AllowAny]  # Allow access to all users
+
+
+class ChannelDetailView(generics.RetrieveAPIView):
+    queryset = Channel.objects.all()
+    serializer_class = ChannelSerializer
+

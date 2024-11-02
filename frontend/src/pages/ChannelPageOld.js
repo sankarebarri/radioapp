@@ -10,7 +10,8 @@ import {
   faCalendarAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import "../styles/ChannelPage.css";
-import api from "../services/api"; // Importing the API
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const ChannelPage = () => {
   const navigate = useNavigate();
@@ -18,53 +19,73 @@ const ChannelPage = () => {
   const [channel, setChannel] = useState(null);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [followers, setFollowers] = useState(0);
-  const [error, setError] = useState(null);
 
   // Placeholder login status
   const isLoggedIn = false;
 
   useEffect(() => {
-    const fetchChannelData = async () => {
-      try {
-        const response = await api.get(`/channels/channels/${id}/`); // Fetch channel data from the API
-        setChannel(response.data);
-        setFollowers(response.data.followers); // Assuming your API returns followers
-      } catch (err) {
-        console.error("Error fetching channel data:", err);
-        setError("Failed to load channel data.");
-      }
-    };
+    const placeholderChannels = [
+      {
+        id: "1",
+        name: "Cool Jazz FM",
+        genre: "Jazz",
+        country: "USA",
+        frequency: "104.3 FM",
+        description: "The best jazz from around the world.",
+        logo: "https://via.placeholder.com/100",
+        followers: 1200, // Follower count placeholder
+        recentBroadcasts: [
+          {
+            id: "1",
+            title: "Jazz Classics",
+            description: "Smooth jazz classics.",
+            timestamp: "Oct 24, 2024",
+          },
+          {
+            id: "2",
+            title: "Evening Jazz",
+            description: "Relaxing jazz to unwind.",
+            timestamp: "Oct 23, 2024",
+          },
+        ],
+        upcomingBroadcasts: [
+          {
+            id: "4",
+            title: "Morning Jazz",
+            description: "Start your day with jazz.",
+            time: "9:00 AM",
+          },
+          {
+            id: "5",
+            title: "Live Jazz Night",
+            description: "A special live jazz performance.",
+            time: "8:00 PM",
+          },
+        ],
+      },
+    ];
 
-    fetchChannelData();
+    const channelData = placeholderChannels.find((ch) => ch.id === id);
+    if (channelData) {
+      setChannel(channelData);
+      setFollowers(channelData.followers);
+    }
   }, [id]);
 
-  const handleFollowClick = async () => {
+  const handleFollowClick = () => {
     if (!isLoggedIn) {
       setShowLoginPrompt(true);
       setTimeout(() => setShowLoginPrompt(false), 3000);
     } else {
-      try {
-        if (channel.isFollowing) {
-          // Unfollow API call
-          await api.post(`/channels/${id}/unfollow/`); // Adjust endpoint
-          setFollowers((prevFollowers) => prevFollowers - 1);
-        } else {
-          // Follow API call
-          await api.post(`/channels/${id}/follow/`); // Adjust endpoint
-          setFollowers((prevFollowers) => prevFollowers + 1);
-        }
-        setChannel((prevChannel) => ({
-          ...prevChannel,
-          isFollowing: !prevChannel.isFollowing,
-        }));
-      } catch (err) {
-        console.error("Error updating follow status:", err);
-        setError("Failed to update follow status.");
-      }
+      setFollowers((prevFollowers) =>
+        channel.isFollowing ? prevFollowers - 1 : prevFollowers + 1
+      );
+      setChannel((prevChannel) => ({
+        ...prevChannel,
+        isFollowing: !prevChannel.isFollowing,
+      }));
     }
   };
-
-  if (error) return <p>{error}</p>; // Error handling
 
   if (!channel) return <p>Loading...</p>;
 
@@ -94,7 +115,10 @@ const ChannelPage = () => {
 
         {/* Action Buttons */}
         <div className="action-buttons">
-          <button className="btn btn-primary me-2">
+          <button
+            className="btn btn-primary me-2"
+            // onClick={() => navigate(`/play/${live.id}`)}
+          >
             <FontAwesomeIcon icon={faPlay} /> Listen Now
           </button>
           <button

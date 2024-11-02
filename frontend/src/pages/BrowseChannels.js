@@ -1,30 +1,26 @@
-// src/pages/BrowseChannels.js
-import React, { useState, useEffect } from "react";
+import React from "react";
+import api from "../services/api";
 import SearchFilter from "../components/SearchFilter";
 import ChannelsGrid from "../components/ChannelsGrid";
-import api from "../services/api"; // Importing API as specified
-import "../styles/BrowseChannels.css";
 
 const BrowseChannels = () => {
-  const [channels, setChannels] = useState([]);
-  const [filteredChannels, setFilteredChannels] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [channels, setChannels] = React.useState([]);
+  const [filteredChannels, setFilteredChannels] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const fetchChannels = async () => {
       try {
         const response = await api.get("/channels/browse/");
         setChannels(response.data);
         setFilteredChannels(response.data);
-      } catch (err) {
-        setError("Failed to fetch channels.");
-        console.error(err);
+      } catch (error) {
+        setError("Failed to fetch channels", error);
       } finally {
         setLoading(false);
       }
     };
-
     fetchChannels();
   }, []);
 
@@ -36,20 +32,15 @@ const BrowseChannels = () => {
   };
 
   if (loading) {
-    return <div>Loading channels...</div>;
-  }
-
-  if (error) {
     return <div>{error}</div>;
   }
 
   return (
     <div className="browse-channels">
-      <h2>Available Channels</h2>
       <SearchFilter onFilter={handleFilter} />
+      <h2 className="text-center">Available Channels</h2>
       <ChannelsGrid channels={filteredChannels} />
     </div>
   );
 };
-
 export default BrowseChannels;
