@@ -26,7 +26,7 @@ const Login = () => {
     try {
       const response = await api.post("login/", data);
       login(response.data.access, response.data.refresh); // Use login function to set tokens
-      navigate("/profile");
+      navigate("/user-authenticated-home-page");
     } catch (error) {
       if (error.response && error.response.data) {
         // Clear previous general error

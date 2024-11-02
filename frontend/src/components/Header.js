@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 import "../styles/Header.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -44,9 +45,12 @@ const Header = () => {
             </button>
           </>
         ) : (
-          <button className="btn primary" onClick={logout}>
-            Logout
-          </button>
+          <div>
+            <FontAwesomeIcon icon="fa-solid fa-user" />
+            <button className="btn primary" onClick={logout}>
+              Logout
+            </button>
+          </div>
         )}
       </nav>
     </header>

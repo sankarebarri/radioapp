@@ -1,45 +1,36 @@
-import React from "react";
-import api from "../services/api";
-import "../styles/UserAuthenticatedHomePage.css"; // Styles for the landing page
+// src/pages/UserAuthenticatedHomePage.js
+import React, { useState, useEffect } from "react";
+import api from "../services/api"; // Your API service
+import "../styles/UserAuthenticatedHomePage.css"; // Styles for the authenticated home page
 
 const UserAuthenticatedHomePage = () => {
-  const [channels, setChannels] = React.useState([]);
-  const [broadcasts, setBroadcasts] = React.useState([]);
-  const [channelsBroadcast, setChannelsBroadcast] = React.useState([]);
+  const [followedChannels, setFollowedChannels] = useState([]);
+  const [broadcasts, setBroadcasts] = useState([]);
 
-  const [error, setError] = React.useState(null);
-
-  React.useEffect(() => {
-    const fetchChannels = async () => {
+  useEffect(() => {
+    const fetchData = async () => {
       try {
-        const response = await api.get("/channels/followed-channels/");
-        setChannels(response.data);
-        // console.log("Fetching channels");
-        // console.log(response.data[0].channel.name);
+        const channelsResponse = await api.get("/channels/followed-channels/");
+        setFollowedChannels(channelsResponse.data);
+
+        const broadcastsResponse = await api.get(
+          "/broadcasts/followed-broadcasts/"
+        );
+        setBroadcasts(broadcastsResponse.data);
       } catch (error) {
-        setError("Can't fetch the channels", error);
-        console.error(error);
+        console.error("Error fetching channels or broadcasts", error);
       }
     };
-    const fetchBroadcasts = async () => {
-      try {
-        const response = await api.get("/broadcasts/followed-broadcasts/");
-        setBroadcasts(response.data);
-        // console.log(response.data[0].title);
-      } catch (error) {
-        setError("Can't fetch the broacasts", error);
-        console.error(error);
-      }
-    };
-    fetchChannels();
-    fetchBroadcasts();
+
+    fetchData();
   }, []);
+
   return (
-    <div className="landing-page">
+    <div className="user-authenticated-home-page">
       <aside className="sidebar">
         <h2>Your Followed Channels</h2>
         <ul>
-          {channels.map((channel) => (
+          {followedChannels.map((channel) => (
             <li key={channel.channel.id}>{channel.channel.name}</li>
           ))}
         </ul>
@@ -51,7 +42,8 @@ const UserAuthenticatedHomePage = () => {
             <div key={broadcast.id} className="broadcast-item">
               <h3>{broadcast.title}</h3>
               <p>{broadcast.description}</p>
-              <small>{broadcast.timestamp}</small>
+              <small>Channel: {broadcast.channel_name}</small>
+              <small>{new Date(broadcast.timestamp).toLocaleString()}</small>
             </div>
           ))}
         </div>
@@ -59,4 +51,5 @@ const UserAuthenticatedHomePage = () => {
     </div>
   );
 };
+
 export default UserAuthenticatedHomePage;
