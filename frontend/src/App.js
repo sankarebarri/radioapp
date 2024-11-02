@@ -14,6 +14,7 @@ import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import BroadcastList from "./components/BroadcastList";
 import FollowedBroadcastsPage from "./pages/FollowedBroadcastsPage";
+import UserAuthenticatedHomePage from "./pages/UserAuthenticatedHomePage";
 
 const App = () => {
   return (
@@ -31,6 +32,10 @@ const App = () => {
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/broadcasts" element={<BroadcastList />} />
           <Route path="/broadcasts-page" element={<FollowedBroadcastsPage />} />
+          <Route
+            path="/user-authenticated-home-page"
+            element={<UserAuthenticatedHomePage />}
+          />
         </Routes>
         <Footer />
       </Router>

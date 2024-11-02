@@ -1,0 +1,47 @@
+/* src/styles/LandingPage.css */
+.landing-page {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 250px; /* Adjust width as necessary */
+    padding: 20px;
+    background-color: #f8f9fa; /* Light background for the sidebar */
+    border-right: 1px solid #ccc; /* Optional border */
+  }
+  
+  .main-content {
+    flex: 1; /* Takes the remaining space */
+    padding: 20px;
+  }
+  
+  .sidebar h2, .main-content h2 {
+    color: #007bff; /* Primary color for headings */
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar li {
+    cursor: pointer;
+    padding: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .sidebar li:hover {
+    background-color: #e9ecef; /* Highlight on hover */
+  }
+  
+  .broadcast-list {
+    margin-top: 20px;
+  }
+  
+  .broadcast-item {
+    padding: 15px;
+    border: 1px solid #ced4da;
+    margin-bottom: 15px;
+    border-radius: 5px;
+  }
+  
