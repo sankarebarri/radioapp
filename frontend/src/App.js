@@ -15,6 +15,7 @@ import Profile from "./pages/Profile";
 import BroadcastList from "./components/BroadcastList";
 import FollowedBroadcastsPage from "./pages/FollowedBroadcastsPage";
 import UserAuthenticatedHomePage from "./pages/UserAuthenticatedHomePage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -23,13 +24,13 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/browse" element={<BrowseChannels />}></Route>
+          <Route path="/browse" element={<BrowseChannels />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="channel/:id" element={<ChannelPage />}></Route>
-          <Route path="play/:broadcastId" element={<PlayingPage />}></Route>
+          <Route path="channel/:id" element={<ChannelPage />} />
+          <Route path="play/:broadcastId" element={<PlayingPage />} />
           <Route path="/channel-owner" element={<ChannelOwnerPage />} />
-          <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/profile" element={<Profile />} />
           <Route path="/broadcasts" element={<BroadcastList />} />
           <Route path="/broadcasts-page" element={<FollowedBroadcastsPage />} />
           <Route

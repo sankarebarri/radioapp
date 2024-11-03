@@ -18,7 +18,7 @@ const Login = () => {
   useEffect(() => {
     // Redirect if already logged in
     if (isAuthenticated) {
-      navigate("/");
+      navigate("/user-authenticated-home-page");
     }
   }, [isAuthenticated, navigate]); // Depend on isAuthenticated
 

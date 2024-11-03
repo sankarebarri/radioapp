@@ -1,49 +1,142 @@
 /* src/styles/Header.css */
 
 .header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #f7f9fc;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .header .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #3498db;
-    cursor: pointer;
-  }
-  
-  .header nav {
-    display: flex;
-    gap: 1rem;
-  }
-  
-  .header nav button,
-  .header nav .btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #333;
-    font-weight: bold;
-  }
-  
-  .header nav .btn.primary {
-    background-color: #3498db;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-  }
-  
-  .header nav .btn.secondary {
-    background-color: #ecf0f1;
-    color: #3498db;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-  }
-  
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #f7f9fc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff; /* Primary color */
+  cursor: pointer;
+}
+
+.header nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.header nav button,
+.header nav .btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  font-weight: bold;
+}
+
+.header nav .btn.primary {
+  background-color: #007bff; /* Primary color */
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+.header nav .btn.secondary {
+  background-color: #6c757d; /* Secondary color */
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+}
+
+/* Profile Dropdown Styles */
+.profile-dropdown {
+  position: relative; /* Position for absolute child elements */
+}
+
+.profile-image {
+  width: 40px; /* Adjust size for the user image */
+  height: 40px; /* Adjust size for the user image */
+  border-radius: 50%; /* Make it circular */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.dropdown-menu {
+  position: absolute; /* Ensure it is absolutely positioned */
+  top: 100%; /* Position directly below the user image */
+  right: 0; /* Align to the right */
+  background-color: white; /* Background color for dropdown */
+  border: 1px solid #ddd; /* Border for dropdown */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  z-index: 2000; /* Ensure it is above other elements */
+  padding: 0; /* Optional padding, can be adjusted */
+  display: block; /* Ensure it takes space */
+}
+
+/* Dropdown Items */
+.dropdown-item {
+  display: flex; /* Use flexbox for icons and text alignment */
+  align-items: center; /* Center the items vertically */
+  padding: 10px 15px; /* Padding for items */
+  color: #333; /* Text color */
+  text-decoration: none; /* Remove underline */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+.dropdown-item:hover {
+  background-color: #0056b3; /* Hover state color */
+  color: white; /* Text color change on hover */
+}
+
+.dropdown-item i {
+  margin-right: 8px; /* Spacing between icon and text */
+}
+
+/* Logout Button */
+.btn.logout {
+  background: none; /* No background */
+  border: none; /* Remove border */
+  color: #333; /* Text color */
+  width: 100%; /* Full width for the button */
+  text-align: left; /* Align text to the left */
+  padding: 10px 15px; /* Padding for logout button */
+}
+
+.header .profile-dropdown .dropdown-menu {
+  position: absolute !important; /* Force this property */
+  top: 100% !important; /* Position directly below the user image */
+  right: 0 !important; /* Align to the right */
+  background-color: white !important; /* Ensure background color is white */
+  border: 1px solid #ddd !important; /* Border for dropdown */
+  border-radius: 5px !important; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important; /* Shadow for depth */
+  z-index: 2000 !important; /* Ensure it is above other elements */
+  padding: 0 !important; /* Optional padding, can be adjusted */
+  display: block !important; /* Ensure it takes space */
+}
+
+/* Dropdown Items */
+.header .profile-dropdown .dropdown-item {
+  display: flex; /* Use flexbox for icons and text alignment */
+  align-items: center; /* Center the items vertically */
+  padding: 10px 15px; /* Padding for items */
+  color: #333; /* Text color */
+  text-decoration: none; /* Remove underline */
+}
+
+.header .profile-dropdown .dropdown-item:hover {
+  background-color: #f1f1f1; /* Highlight on hover */
+}
+
+.header .profile-dropdown .dropdown-item i {
+  margin-right: 8px; /* Spacing between icon and text */
+}
+
+/* Logout Button */
+.header .profile-dropdown .btn.logout {
+  background: none; /* No background */
+  border: none; /* Remove border */
+  color: #333; /* Text color */
+  width: 100%; /* Full width for the button */
+  text-align: left; /* Align text to the left */
+  padding: 10px 15px; /* Padding for logout button */
+}
