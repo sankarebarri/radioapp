@@ -2,7 +2,7 @@
 from django.urls import path
 from .views import BroadcastListView
 # from .views import FollowedBroadcastsView, AllBroadcastsView
-from .views import AllBroadcastsView, FolowedChannelsBroadcastsView
+from .views import AllBroadcastsView, FolowedChannelsBroadcastsView, UserBroadcastListView
 
 
 
@@ -11,4 +11,5 @@ urlpatterns = [
     # path('followed-broadcasts/', FollowedBroadcastsView.as_view(), name='followed-broadcasts'),
     path('broadcasts/', AllBroadcastsView.as_view(), name='all-broadcasts'),
     path('followed-broadcasts/', FolowedChannelsBroadcastsView.as_view(), name='followed-broadcasts'),
+    path('user-broadcasts/', UserBroadcastListView.as_view(), name='user-broadcasts'),
 ]

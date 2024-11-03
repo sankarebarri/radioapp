@@ -58,3 +58,15 @@ class FolowedChannelsBroadcastsView(generics.ListAPIView):
     def get_serializer_class(self):
         return BroadcastSerializer
 
+
+class UserBroadcastListView(generics.ListAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Broadcast.objects.all()
+
+    def get_serializer_context(self):
+        return {'request': self.request}
+
+    def get_serializer_class(self):
+        return BroadcastSerializer

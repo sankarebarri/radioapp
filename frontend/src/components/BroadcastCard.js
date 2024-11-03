@@ -9,19 +9,16 @@ import {
 import "../styles/BroadcastCard.css"; // Import the CSS for styling
 
 const BroadcastCard = ({ broadcast, onListen }) => {
-  const {
-    title,
-    description,
-    channel_name,
-    timestamp,
-    hasBeenPlayed,
-    isDownloaded,
-  } = broadcast;
+  const { title, description, channel_name, timestamp, user_interactions } =
+    broadcast;
+
+  const downloaded = user_interactions?.downloaded || false; // Default to false if undefined
+  const is_listened_to = user_interactions?.is_listened_to || false; // Default to false if undefined
 
   return (
     <div
       className={`broadcast-card ${
-        hasBeenPlayed ? "listened" : "not-listened"
+        is_listened_to ? "listened" : "not-listened"
       }`}
     >
       <h3 className="broadcast-title">{title}</h3>
@@ -34,14 +31,19 @@ const BroadcastCard = ({ broadcast, onListen }) => {
       </div>
       <div className="broadcast-actions">
         <button onClick={() => onListen(broadcast.id)}>
-          <FontAwesomeIcon icon={faPlay} /> Listen Now
+          <FontAwesomeIcon icon={faPlay} />{" "}
+          {is_listened_to ? "Listen Again" : "Listen Now"}
         </button>
-        {!isDownloaded ? (
+        {!downloaded ? (
           <button className="download-button">
             <FontAwesomeIcon icon={faDownload} /> Download
           </button>
         ) : (
-          <FontAwesomeIcon icon={faCheckCircle} className="downloaded-icon" />
+          <FontAwesomeIcon
+            icon={faCheckCircle}
+            className="downloaded-icon"
+            style={{ fontSize: "2.5rem" }}
+          />
         )}
       </div>
     </div>

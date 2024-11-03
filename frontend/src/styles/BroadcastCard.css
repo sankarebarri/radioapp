@@ -64,3 +64,18 @@
 .downloaded-icon {
     color: #28a745; /* Green color for downloaded icon */
 }
+
+.broadcast-card.listened {
+    border: 2px solid green; /* Example: green border for listened */
+    background-color: #f0f8e6; /* Light background for listened */
+}
+
+.broadcast-card.not-listened {
+    border: 2px solid red; /* Example: red border for not listened */
+    background-color: #ffe6e6; /* Light background for not listened */
+}
+
+/* Adjust the size of the downloaded icon */
+.downloaded-icon {
+    font-size: 1.5rem; /* Increase size for visibility */
+}

@@ -21,6 +21,8 @@ const UserAuthenticatedHomePage = () => {
           `/broadcasts/followed-broadcasts/?page=${page}`
         );
         setBroadcasts((prev) => [...prev, ...broadcastsResponse.data]); // Append new broadcasts
+        // console.log(broadcastsResponse.data[0]);
+
         setHasMore(broadcastsResponse.data.length > 0); // Update hasMore based on response
       } catch (error) {
         console.error("Error fetching channels or broadcasts", error);
@@ -49,7 +51,10 @@ const UserAuthenticatedHomePage = () => {
       <aside className="sidebar">
         <h2>Your Followed Channels</h2>
         {followedChannels.map((channel) => (
-          <ChannelCard key={channel.id} channel={channel} />
+          <ChannelCard
+            key={`${channel.channel.id}-${channel.channel.channel_name}`}
+            channel={channel}
+          />
         ))}
       </aside>
       <main className="main-content">
@@ -58,7 +63,7 @@ const UserAuthenticatedHomePage = () => {
         <div className="broadcast-list">
           {broadcasts.map((broadcast) => (
             <BroadcastCard
-              key={broadcast.id}
+              key={`${broadcast.id}-${broadcast.channel_name}`}
               broadcast={broadcast}
               onListen={(id) => console.log(`Listening to broadcast ${id}`)}
             />
