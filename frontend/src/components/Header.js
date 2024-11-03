@@ -3,11 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHouse,
-  faUser,
-  faSignOutAlt,
-} from "@fortawesome/free-solid-svg-icons"; // Import Font Awesome icons
+import { faHome, faUser, faSignOut } from "@fortawesome/free-solid-svg-icons"; // Import Font Awesome icons
 import "../styles/Header.css";
 
 const Header = () => {
@@ -93,7 +89,7 @@ const Header = () => {
                         : "transparent",
                   }}
                 >
-                  <FontAwesomeIcon icon={faHouse} /> Dashboard
+                  <FontAwesomeIcon icon={faHome} /> Dashboard
                 </Link>
                 <Link
                   to="/profile"
@@ -109,7 +105,7 @@ const Header = () => {
                   <FontAwesomeIcon icon={faUser} /> Profile
                 </Link>
                 <button className="btn logout" onClick={handleLogout}>
-                  <FontAwesomeIcon icon={faSignOutAlt} /> Logout
+                  <FontAwesomeIcon icon={faSignOut} /> Logout
                 </button>
               </div>
             )}

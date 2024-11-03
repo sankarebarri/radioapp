@@ -6,8 +6,6 @@ import AudioControls from "../components/AudioControls";
 import AdditionalControls from "../components/AdditionalControls";
 import PlaybackSettings from "../components/PlaybackSettings";
 import "../styles/PlayingPage.css";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 
 const PlayingPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);

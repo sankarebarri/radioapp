@@ -1,79 +1,37 @@
 /* src/styles/UserAuthenticatedHomePage.css */
+
 .user-authenticated-home-page {
-  display: flex;
-  font-family: 'Roboto', sans-serif; /* Ensure your primary font is applied */
+  display: flex; /* Flex layout for sidebar and main content */
+  padding: 20px; /* Padding around the page */
+  background-color: #f8f9fa; /* Background color for the main area */
 }
 
 .sidebar {
   width: 250px; /* Fixed width for sidebar */
-  padding: 20px;
-  background-color: #ffffff; /* Card background */
-  border-right: 1px solid #dee2e6; /* Subtle border for separation */
-  height: 100vh; /* Full height sidebar */
-  overflow-y: auto; /* Scroll if content overflows */
-}
-
-.sidebar h2 {
-  color: #007bff; /* Primary color for headings */
-  font-size: 1.5rem; /* Slightly larger font size */
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar li {
-  cursor: pointer;
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.sidebar li:hover {
-  background-color: #f1f1f1; /* Light grey on hover */
+  margin-right: 20px; /* Space between sidebar and main content */
+  background-color: #ffffff; /* Sidebar background */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  padding: 1rem; /* Padding inside the sidebar */
 }
 
 .main-content {
-  flex: 1; /* Takes the remaining space */
-  padding: 20px;
-  background-color: #f8f9fa; /* Main background color */
-}
-
-.main-content h2 {
-  color: #007bff; /* Primary color for main headings */
-  margin-bottom: 15px; /* Space below the heading */
+  flex: 1; /* Take remaining space */
+  background-color: #ffffff; /* Main content background */
+  border-radius: 5px; /* Rounded corners */
+  padding: 1rem; /* Padding inside main content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow for depth */
 }
 
 .broadcast-list {
-  display: flex;
-  flex-direction: column; /* Stacked layout for broadcasts */
+  display: grid; /* Grid layout for broadcasts */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Space between broadcast cards */
 }
 
-.broadcast-item {
-  background-color: #ffffff; /* Card background */
-  padding: 15px;
-  border: 1px solid #ced4da; /* Light border for items */
-  border-radius: 8px; /* Rounded corners */
-  margin-bottom: 15px;
-  transition: box-shadow 0.3s;
-}
-
-.broadcast-item:hover {
-  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2); /* Shadow on hover for depth */
-}
-
-.broadcast-item h3 {
-  color: #212529; /* Darker text for titles */
-  margin: 0; /* Remove default margin */
-}
-
-.broadcast-item p {
-  color: #6c757d; /* Muted text for descriptions */
-}
-
-.broadcast-item small {
-  display: block; /* Make it a block element for clarity */
-  color: #6c757d; /* Secondary text color */
+/* Divider between sections */
+.section-divider {
+  border: none; /* No default border */
+  border-top: 2px solid #007bff; /* Primary color for the divider */
+  margin: 1rem 0; /* Space above and below divider */
 }

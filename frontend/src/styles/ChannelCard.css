@@ -1,0 +1,58 @@
+/* src/styles/ChannelCard.css */
+
+.channel-card {
+    display: flex; /* Use flex layout for inline arrangement */
+    align-items: center; /* Align items vertically */
+    border: 1px solid #ddd; /* Border for the card */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    margin: 0.5rem; /* Reduced space between cards */
+    padding: 0.75rem; /* Padding inside the card */
+    background-color: #ffffff; /* Card background */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+    height: 100px; /* Set a fixed height for uniformity */
+    flex-direction: row; /* Align items in a row */
+    cursor: pointer; /* Change cursor to pointer for interactivity */
+}
+
+.channel-card:hover {
+    transform: scale(1.02); /* Slight scale on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.channel-logo {
+    width: 50px; /* Size for the logo */
+    height: 50px; /* Maintain aspect ratio */
+    border-radius: 5px; /* Match card corners */
+    margin-right: 15px; /* Space between logo and text */
+}
+
+.channel-info {
+    flex: 1; /* Take remaining space */
+    display: flex; /* Use flex for inner layout */
+    flex-direction: column; /* Column layout for name and details */
+}
+
+.channel-name {
+    font-size: 1.1rem; /* Font size for channel name */
+    color: #007bff; /* Primary color for names */
+    margin: 0; /* Remove margin */
+    font-weight: bold; /* Bold font weight */
+}
+
+.channel-details {
+    display: flex; /* Flex layout for country and frequency */
+    justify-content: space-between; /* Space between country and frequency */
+    margin-top: 5px; /* Space above details */
+}
+
+.channel-country,
+.channel-frequency {
+    font-size: 0.9rem; /* Font size for country and frequency */
+    color: #495057; /* Darker shade for text */
+    font-weight: 600; /* Medium bold for country */
+}
+
+.channel-frequency {
+    font-weight: 400; /* Regular weight for frequency */
+}

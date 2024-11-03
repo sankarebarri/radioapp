@@ -1,0 +1,66 @@
+/* src/styles/BroadcastCard.css */
+
+.broadcast-card {
+    border: 1px solid #ddd; /* Default border color */
+    border-radius: 5px; /* Rounded corners */
+    padding: 1rem; /* Padding inside the card */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+    background-color: #ffffff; /* Card background */
+    cursor: pointer; /* Change cursor to pointer for interactivity */
+}
+
+.broadcast-card.not-listened {
+    border-color: #28a745; /* Green border for not listened */
+}
+
+.broadcast-card.listened {
+    border-color: #6c757d; /* Gray border for listened */
+    background-color: #f8f9fa; /* Light background for listened broadcasts */
+}
+
+.broadcast-card:hover {
+    transform: scale(1.02); /* Slight scale on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.broadcast-title {
+    font-size: 1.2rem; /* Font size for broadcast title */
+    color: #007bff; /* Primary color for title */
+}
+
+.broadcast-description {
+    margin: 0.5rem 0; /* Space above and below description */
+    color: #6c757d; /* Secondary text color */
+}
+
+.broadcast-meta {
+    display: flex; /* Flex layout for channel and timestamp */
+    justify-content: space-between; /* Space between channel and timestamp */
+    margin: 0.5rem 0; /* Space above and below */
+}
+
+.broadcast-channel,
+.broadcast-timestamp {
+    font-size: 0.85rem; /* Font size for channel and timestamp */
+    color: #495057; /* Darker shade for text */
+}
+
+.broadcast-actions {
+    display: flex; /* Flex layout for actions */
+    justify-content: space-between; /* Space between buttons and icon */
+    margin-top: 10px; /* Space above actions */
+}
+
+.download-button {
+    background-color: #007bff; /* Primary color for download button */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 0.5rem 1rem; /* Padding inside button */
+    cursor: pointer; /* Pointer cursor */
+}
+
+.downloaded-icon {
+    color: #28a745; /* Green color for downloaded icon */
+}

@@ -1,11 +1,15 @@
 // src/pages/UserAuthenticatedHomePage.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import api from "../services/api"; // Your API service
+import ChannelCard from "../components/ChannelCard"; // Importing ChannelCard component
+import BroadcastCard from "../components/BroadcastCard"; // Importing BroadcastCard component
 import "../styles/UserAuthenticatedHomePage.css"; // Styles for the authenticated home page
 
 const UserAuthenticatedHomePage = () => {
   const [followedChannels, setFollowedChannels] = useState([]);
   const [broadcasts, setBroadcasts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true); // State to check if more broadcasts are available
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,39 +18,54 @@ const UserAuthenticatedHomePage = () => {
         setFollowedChannels(channelsResponse.data);
 
         const broadcastsResponse = await api.get(
-          "/broadcasts/followed-broadcasts/"
+          `/broadcasts/followed-broadcasts/?page=${page}`
         );
-        setBroadcasts(broadcastsResponse.data);
+        setBroadcasts((prev) => [...prev, ...broadcastsResponse.data]); // Append new broadcasts
+        setHasMore(broadcastsResponse.data.length > 0); // Update hasMore based on response
       } catch (error) {
         console.error("Error fetching channels or broadcasts", error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [page]); // Fetch data whenever the page changes
+
+  const handleScroll = useCallback(() => {
+    if (
+      window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+      hasMore
+    ) {
+      setPage((prevPage) => prevPage + 1); // Increment page to fetch more broadcasts
+    }
+  }, [hasMore]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
   return (
     <div className="user-authenticated-home-page">
       <aside className="sidebar">
         <h2>Your Followed Channels</h2>
-        <ul>
-          {followedChannels.map((channel) => (
-            <li key={channel.channel.id}>{channel.channel.name}</li>
-          ))}
-        </ul>
+        {followedChannels.map((channel) => (
+          <ChannelCard key={channel.id} channel={channel} />
+        ))}
       </aside>
       <main className="main-content">
         <h2>Broadcasts</h2>
+        <hr className="section-divider" />
         <div className="broadcast-list">
           {broadcasts.map((broadcast) => (
-            <div key={broadcast.id} className="broadcast-item">
-              <h3>{broadcast.title}</h3>
-              <p>{broadcast.description}</p>
-              <small>Channel: {broadcast.channel_name}</small>
-              <small>{new Date(broadcast.timestamp).toLocaleString()}</small>
-            </div>
+            <BroadcastCard
+              key={broadcast.id}
+              broadcast={broadcast}
+              onListen={(id) => console.log(`Listening to broadcast ${id}`)}
+            />
           ))}
         </div>
+        {!hasMore && <p>No more broadcasts available</p>}{" "}
+        {/* Message for no more broadcasts */}
       </main>
     </div>
   );
