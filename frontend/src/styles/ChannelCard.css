@@ -10,9 +10,8 @@
     padding: 0.75rem; /* Padding inside the card */
     background-color: #ffffff; /* Card background */
     transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
-    height: 100px; /* Set a fixed height for uniformity */
-    flex-direction: row; /* Align items in a row */
-    cursor: pointer; /* Change cursor to pointer for interactivity */
+    height: 100px;
+    flex-direction: row;
 }
 
 .channel-card:hover {
@@ -49,10 +48,5 @@
 .channel-country,
 .channel-frequency {
     font-size: 0.9rem; /* Font size for country and frequency */
-    color: #495057; /* Darker shade for text */
-    font-weight: 600; /* Medium bold for country */
-}
-
-.channel-frequency {
-    font-weight: 400; /* Regular weight for frequency */
+    color: #6c757d; /* Secondary color for details */
 }

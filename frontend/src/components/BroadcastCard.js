@@ -6,7 +6,7 @@ import {
   faDownload,
   faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import "../styles/BroadcastCard.css"; // Import the CSS for styling
+import "../styles/BroadcastCard.css";
 
 const BroadcastCard = ({ broadcast, onListen }) => {
   const { title, description, channel_name, timestamp, user_interactions } =

@@ -65,6 +65,7 @@ const UserAuthenticatedHomePage = () => {
             <BroadcastCard
               key={`${broadcast.id}-${broadcast.channel_name}`}
               broadcast={broadcast}
+              // Is this(onListen) important?
               onListen={(id) => console.log(`Listening to broadcast ${id}`)}
             />
           ))}

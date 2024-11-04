@@ -21,13 +21,24 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
 
           <Route path="/browse" element={<BrowseChannels />} />
           <Route path="play/:broadcastId" element={<PlayingPage />} />
           <Route
             path="/user-authenticated-home-page"
-            element={<UserAuthenticatedHomePage />}
+            element={
+              <ProtectedRoute>
+                <UserAuthenticatedHomePage />
+              </ProtectedRoute>
+            }
           />
         </Routes>
         <Footer />

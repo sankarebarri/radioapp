@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import api from "../services/api";
 import { useAuth } from "../context/AuthContext"; // Import useAuth to access AuthContext
 
@@ -12,21 +12,25 @@ const Login = () => {
     setError,
   } = useForm();
   const navigate = useNavigate();
+  const location = useLocation();
   const [generalError, setGeneralError] = useState(""); // State for general errors
   const { login, isAuthenticated } = useAuth(); // Destructure login and isAuthenticated from useAuth
+
+  const redirectTo =
+    location.state?.from?.pathname || "/user-authenticated-home-page";
 
   useEffect(() => {
     // Redirect if already logged in
     if (isAuthenticated) {
-      navigate("/user-authenticated-home-page");
+      navigate(redirectTo);
     }
-  }, [isAuthenticated, navigate]); // Depend on isAuthenticated
+  }, [isAuthenticated, navigate, location.state]); // Depend on isAuthenticated
 
   const onSubmit = async (data) => {
     try {
       const response = await api.post("login/", data);
       login(response.data.access, response.data.refresh); // Use login function to set tokens
-      navigate("/user-authenticated-home-page");
+      navigate(redirectTo);
     } catch (error) {
       if (error.response && error.response.data) {
         // Clear previous general error
