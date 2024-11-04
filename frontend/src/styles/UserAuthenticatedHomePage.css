@@ -7,7 +7,7 @@
 }
 
 .sidebar {
-  width: 250px; /* Fixed width for sidebar */
+  width: 300px; /* Fixed width for sidebar */
   margin-right: 20px; /* Space between sidebar and main content */
   background-color: #ffffff; /* Sidebar background */
   border-radius: 5px; /* Rounded corners */

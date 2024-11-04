@@ -83,7 +83,8 @@ const UserAuthenticatedHomePage = () => {
   return (
     <div className="user-authenticated-home-page">
       <aside className="sidebar">
-        <h2>Followed Channels</h2>
+        <h3>Followed Channels</h3>
+        <hr className="section-divider" />
         {followedChannels.map((channel) => (
           <ChannelCard key={channel.channel.id} channel={channel} />
         ))}
