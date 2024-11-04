@@ -10,7 +10,6 @@ const UserAuthenticatedHomePage = () => {
   const [page, setPage] = React.useState(1);
   const [error, setError] = React.useState(null);
   const [hasMore, setHasmore] = React.useState(true);
-  const [remainingData, setRemainingData] = React.useState(null);
   React.useEffect(() => {
     const fetchChannels = async () => {
       try {
@@ -23,7 +22,7 @@ const UserAuthenticatedHomePage = () => {
         //   channelsResponse.data.results
         // );
       } catch (err) {
-        setError("Can't fetch followed channels", error);
+        setError("followedChannelsError", error);
       }
     };
 
@@ -64,7 +63,7 @@ const UserAuthenticatedHomePage = () => {
 
     fetchChannels();
     fetchBroadcasts();
-  }, [page]);
+  }, [page, error]);
 
   const handleScroll = React.useCallback(() => {
     if (

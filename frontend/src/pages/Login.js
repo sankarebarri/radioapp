@@ -24,7 +24,7 @@ const Login = () => {
     if (isAuthenticated) {
       navigate(redirectTo);
     }
-  }, [isAuthenticated, navigate, location.state]); // Depend on isAuthenticated
+  }, [isAuthenticated, navigate, redirectTo]); // Depend on isAuthenticated
 
   const onSubmit = async (data) => {
     try {
