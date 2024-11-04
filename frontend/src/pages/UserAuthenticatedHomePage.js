@@ -1,80 +1,101 @@
-// src/pages/UserAuthenticatedHomePage.js
-import React, { useState, useEffect, useCallback } from "react";
-import api from "../services/api"; // Your API service
-import ChannelCard from "../components/ChannelCard"; // Importing ChannelCard component
-import BroadcastCard from "../components/BroadcastCard"; // Importing BroadcastCard component
-import "../styles/UserAuthenticatedHomePage.css"; // Styles for the authenticated home page
+import React from "react";
+import api from "../services/api";
+import ChannelCard from "../components/ChannelCard";
+import BroadcastCard from "../components/BroadcastCard";
+import "../styles/UserAuthenticatedHomePage.css";
 
 const UserAuthenticatedHomePage = () => {
-  const [followedChannels, setFollowedChannels] = useState([]);
-  const [broadcasts, setBroadcasts] = useState([]);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true); // State to check if more broadcasts are available
-
-  useEffect(() => {
-    const fetchData = async () => {
+  const [followedChannels, setFollowedChannels] = React.useState([]);
+  const [followedBroadcasts, setFollowedBroadcasts] = React.useState([]);
+  const [page, setPage] = React.useState(1);
+  const [error, setError] = React.useState(null);
+  const [hasMore, setHasmore] = React.useState(true);
+  const [remainingData, setRemainingData] = React.useState(null);
+  React.useEffect(() => {
+    const fetchChannels = async () => {
       try {
-        const channelsResponse = await api.get("/channels/followed-channels/");
-        setFollowedChannels(channelsResponse.data);
+        const channelsResponse = await api.get("/channels/followed-channels");
+        setFollowedChannels(channelsResponse.data.results);
+        // console.log(channelsResponse.data.results);
 
-        const broadcastsResponse = await api.get(
-          `/broadcasts/followed-broadcasts/?page=${page}`
-        );
-        setBroadcasts((prev) => [...prev, ...broadcastsResponse.data]); // Append new broadcasts
-        // console.log(broadcastsResponse.data[0]);
-
-        setHasMore(broadcastsResponse.data.length > 0); // Update hasMore based on response
-      } catch (error) {
-        console.error("Error fetching channels or broadcasts", error);
+        // console.log(
+        //   "Fetching followed channels data.results",
+        //   channelsResponse.data.results
+        // );
+      } catch (err) {
+        setError("Can't fetch followed channels", error);
       }
     };
 
-    fetchData();
-  }, [page]); // Fetch data whenever the page changes
+    const fetchBroadcasts = async () => {
+      try {
+        const broadcastsResponses = await api.get(
+          `/broadcasts/followed-broadcasts/?page=${page}`
+        );
+        // const broadcastsResponses = await api.get(
+        //   "/broadcasts/followed-broadcasts/"
+        // );
+        // console.log(broadcastsResponses.data.results);
 
-  const handleScroll = useCallback(() => {
+        setFollowedBroadcasts((prev) => {
+          const newBroadcasts = broadcastsResponses.data.results;
+          const existingIds = new Set(prev.map((broadcast) => broadcast.id));
+          const uniqueBroadcasts = newBroadcasts.filter(
+            (broadcast) => !existingIds.has(broadcast.id)
+          );
+          return [...prev, ...uniqueBroadcasts];
+        });
+        // console.log(broadcastsResponses.data);
+        // console.log(broadcastsResponses.data.count);
+        // console.log(broadcastsResponses.data.results.length);
+        // setRemainingData(
+        //   broadcastsResponses.data.count -
+        //     broadcastsResponses.data.results.length
+        // );
+        const moreData = !!broadcastsResponses.data.next;
+        setHasmore(moreData);
+      } catch (err) {
+        setError("Can't fetch followed broadcasts", error);
+      }
+    };
+
+    fetchChannels();
+    fetchBroadcasts();
+  }, [page]);
+
+  const handleScroll = React.useCallback(() => {
     if (
       window.innerHeight + window.scrollY >= document.body.offsetHeight &&
       hasMore
     ) {
-      setPage((prevPage) => prevPage + 1); // Increment page to fetch more broadcasts
+      setPage((prevPage) => prevPage + 1);
     }
   }, [hasMore]);
 
-  useEffect(() => {
+  console.log(hasMore);
+
+  React.useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
-
   return (
     <div className="user-authenticated-home-page">
       <aside className="sidebar">
-        <h2>Your Followed Channels</h2>
+        <h2>Followed Channels</h2>
         {followedChannels.map((channel) => (
-          <ChannelCard
-            key={`${channel.channel.id}-${channel.channel.channel_name}`}
-            channel={channel}
-          />
+          <ChannelCard key={channel.channel.id} channel={channel} />
         ))}
       </aside>
       <main className="main-content">
         <h2>Broadcasts</h2>
         <hr className="section-divider" />
         <div className="broadcast-list">
-          {broadcasts.map((broadcast) => (
-            <BroadcastCard
-              key={`${broadcast.id}-${broadcast.channel_name}`}
-              broadcast={broadcast}
-              // Is this(onListen) important?
-              onListen={(id) => console.log(`Listening to broadcast ${id}`)}
-            />
+          {followedBroadcasts.map((broadcast) => (
+            <BroadcastCard key={broadcast.id} broadcast={broadcast} />
           ))}
         </div>
-        {!hasMore && <p>No more broadcasts available</p>}{" "}
-        {/* Message for no more broadcasts */}
       </main>
     </div>
   );
 };
-
 export default UserAuthenticatedHomePage;
