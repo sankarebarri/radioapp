@@ -74,7 +74,7 @@ const UserAuthenticatedHomePage = () => {
     }
   }, [hasMore]);
 
-  console.log(hasMore);
+  // console.log(hasMore);
 
   React.useEffect(() => {
     window.addEventListener("scroll", handleScroll);

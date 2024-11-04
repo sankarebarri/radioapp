@@ -7,14 +7,15 @@ import {
   faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import "../styles/BroadcastCard.css";
+import { Link, useNavigate } from "react-router-dom";
 
 const BroadcastCard = ({ broadcast, onListen }) => {
-  const { title, description, channel_name, timestamp, user_interactions } =
+  const { id, title, description, channel_name, timestamp, user_interactions } =
     broadcast;
 
   const downloaded = user_interactions?.downloaded || false; // Default to false if undefined
   const is_listened_to = user_interactions?.is_listened_to || false; // Default to false if undefined
-
+  const navigate = useNavigate();
   return (
     <div
       className={`broadcast-card ${
@@ -30,7 +31,7 @@ const BroadcastCard = ({ broadcast, onListen }) => {
         </small>
       </div>
       <div className="broadcast-actions">
-        <button onClick={() => onListen(broadcast.id)}>
+        <button onClick={() => navigate(`/play/${id}`)}>
           <FontAwesomeIcon icon={faPlay} />{" "}
           {is_listened_to ? "Listen Again" : "Listen Now"}
         </button>
