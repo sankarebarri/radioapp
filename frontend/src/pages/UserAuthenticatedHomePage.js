@@ -39,6 +39,9 @@ const UserAuthenticatedHomePage = () => {
 
         setFollowedBroadcasts((prev) => {
           const newBroadcasts = broadcastsResponses.data.results;
+          // const uniqueBroadcasts = newBroadcasts.filter(broadcast =>
+          //   !prev.some(prevBroadcast => prevBroadcast.id === broadcast.id)
+          // );
           const existingIds = new Set(prev.map((broadcast) => broadcast.id));
           const uniqueBroadcasts = newBroadcasts.filter(
             (broadcast) => !existingIds.has(broadcast.id)
