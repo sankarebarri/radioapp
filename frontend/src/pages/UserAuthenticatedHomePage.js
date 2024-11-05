@@ -34,7 +34,7 @@ const UserAuthenticatedHomePage = () => {
         // const broadcastsResponses = await api.get(
         //   "/broadcasts/followed-broadcasts/"
         // );
-        console.log(broadcastsResponses.data.next);
+        // console.log(broadcastsResponses.data.next);
 
         setFollowedBroadcasts((prev) => {
           const newBroadcasts = broadcastsResponses.data;

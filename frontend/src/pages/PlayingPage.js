@@ -6,8 +6,12 @@ import AudioControls from "../components/AudioControls";
 import AdditionalControls from "../components/AdditionalControls";
 import PlaybackSettings from "../components/PlaybackSettings";
 import "../styles/PlayingPage.css";
+import { useParams } from "react-router-dom";
+import api from "../services/api";
 
 const PlayingPage = () => {
+  const { broadcastId } = useParams();
+  const [broadcast, setBroadcast] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.8);
   const [played, setPlayed] = useState(0);
@@ -22,17 +26,34 @@ const PlayingPage = () => {
   const skipBackward = () =>
     playerRef.current.seekTo(playerRef.current.getCurrentTime() - 10);
 
+  React.useEffect(() => {
+    const fetchBroadcasts = async () => {
+      try {
+        const response = await api.get(`/broadcasts/broadcasts/${broadcastId}`);
+        setBroadcast(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchBroadcasts();
+  }, [broadcastId]);
+
+  if (!broadcast) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <div className="playing-page">
         <BroadcastInfo
-          title="Jazz Classics"
-          channel="Cool Jazz FM"
-          description="Smooth jazz classics to relax and unwind."
+          title={broadcast.title}
+          channel={broadcast.channel_name}
+          description={broadcast.description}
         />
         <ReactPlayer
           ref={playerRef}
-          url="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+          url={broadcast.audio_url}
           playing={isPlaying}
           volume={volume}
           loop={loop}
