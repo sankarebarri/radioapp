@@ -11,6 +11,8 @@ import {
 import "../styles/ChannelsGrid.css";
 
 const ChannelsGrid = ({ channels }) => {
+  console.log(channels);
+
   return (
     <div className="channels-grid">
       {channels.map((channel) => (

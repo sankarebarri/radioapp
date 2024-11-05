@@ -14,8 +14,8 @@ const UserAuthenticatedHomePage = () => {
     const fetchChannels = async () => {
       try {
         const channelsResponse = await api.get("/channels/followed-channels");
-        setFollowedChannels(channelsResponse.data.results);
-        // console.log(channelsResponse.data.results);
+        setFollowedChannels(channelsResponse.data);
+        // console.log(channelsResponse.data);
 
         // console.log(
         //   "Fetching followed channels data.results",
@@ -34,10 +34,10 @@ const UserAuthenticatedHomePage = () => {
         // const broadcastsResponses = await api.get(
         //   "/broadcasts/followed-broadcasts/"
         // );
-        // console.log(broadcastsResponses.data.results);
+        console.log(broadcastsResponses.data.next);
 
         setFollowedBroadcasts((prev) => {
-          const newBroadcasts = broadcastsResponses.data.results;
+          const newBroadcasts = broadcastsResponses.data;
           // const uniqueBroadcasts = newBroadcasts.filter(broadcast =>
           //   !prev.some(prevBroadcast => prevBroadcast.id === broadcast.id)
           // );

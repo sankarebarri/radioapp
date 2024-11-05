@@ -59,8 +59,10 @@ class FolowedChannelsBroadcastsView(generics.ListAPIView):
         return BroadcastSerializer
 
 
+from .pagination import CustomPageNumberPagination
 class UserBroadcastListView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
+    pagination_class = CustomPageNumberPagination
 
     def get_queryset(self):
         return Broadcast.objects.all()
