@@ -5,17 +5,43 @@ import {
   faPlay,
   faDownload,
   faCheckCircle,
+  faThumbsUp,
 } from "@fortawesome/free-solid-svg-icons";
 import "../styles/BroadcastCard.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import api from "../services/api";
 
 const BroadcastCard = ({ broadcast, onListen }) => {
-  const { id, title, description, channel_name, timestamp, user_interactions } =
-    broadcast;
+  const {
+    id,
+    title,
+    description,
+    channel_name,
+    timestamp,
+    user_interactions,
+    likes_count,
+  } = broadcast;
 
-  const downloaded = user_interactions?.downloaded || false; // Default to false if undefined
-  const is_listened_to = user_interactions?.is_listened_to || false; // Default to false if undefined
+  const [liked, setLiked] = React.useState(user_interactions?.liked || false);
+  const [error, setError] = React.useState(null);
+  const downloaded = user_interactions?.downloaded || false;
+  const is_listened_to = user_interactions?.is_listened_to || false;
+
   const navigate = useNavigate();
+
+  const handleLike = async () => {
+    try {
+      const responseLike = await api.post(`broadcasts/broadcasts/${id}/like/`, {
+        like: !liked, // Toggle like
+      });
+      setLiked(!liked); // Toggle local liked state
+      console.log(responseLike);
+    } catch (error) {
+      setError("Failed to like the broadcast");
+      console.error(error);
+    }
+  };
+
   return (
     <div
       className={`broadcast-card ${
@@ -34,6 +60,13 @@ const BroadcastCard = ({ broadcast, onListen }) => {
         <button onClick={() => navigate(`/play/${id}`)}>
           <FontAwesomeIcon icon={faPlay} />{" "}
           {is_listened_to ? "Listen Again" : "Listen Now"}
+        </button>
+        <button onClick={handleLike}>
+          <FontAwesomeIcon
+            icon={faThumbsUp}
+            style={{ color: liked ? "blue" : "red" }}
+          />
+          {likes_count + (liked ? 1 : 0)} Likes
         </button>
         {!downloaded ? (
           <button className="download-button">
