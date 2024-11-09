@@ -23,8 +23,11 @@ const BroadcastCard = ({ broadcast, onListen }) => {
   } = broadcast;
 
   const [liked, setLiked] = React.useState(user_interactions?.liked || false);
+  const [downloaded, setDownloaded] = React.useState(
+    user_interactions?.downloaded || false
+  );
   const [error, setError] = React.useState(null);
-  const downloaded = user_interactions?.downloaded || false;
+  // const downloaded = user_interactions?.downloaded || false;
   const is_listened_to = user_interactions?.is_listened_to || false;
 
   const navigate = useNavigate();
@@ -35,12 +38,28 @@ const BroadcastCard = ({ broadcast, onListen }) => {
         like: !liked, // Toggle like
       });
       setLiked(!liked); // Toggle local liked state
-      console.log(responseLike);
+      // console.log(responseLike);
     } catch (error) {
       setError("Failed to like the broadcast");
-      console.error(error);
+      // console.error(error);
     }
   };
+
+  const handleDownload = async () => {
+    try {
+      const responseDownload = await api.post(
+        `broadcasts/broadcasts/${id}/download/`,
+        {
+          downloaded: true,
+        }
+      );
+      setDownloaded(true);
+      // console.log(responseDownload);
+    } catch (error) {
+      setError("Failed to download the broadcast");
+    }
+  };
+  // handleDownload();
 
   return (
     <div
@@ -69,7 +88,7 @@ const BroadcastCard = ({ broadcast, onListen }) => {
           {likes_count + (liked ? 1 : 0)} Likes
         </button>
         {!downloaded ? (
-          <button className="download-button">
+          <button onClick={handleDownload} className="download-button">
             <FontAwesomeIcon icon={faDownload} /> Download
           </button>
         ) : (

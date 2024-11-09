@@ -85,9 +85,11 @@ class BroadcastInteractionView(APIView):
                 broadcast.save()
                 return Response({'message': 'Broadcast liked'}, status=status.HTTP_200_OK)
 
-            if request.data.get('download'):
+            if request.data.get('downloaded'):
                 user_broadcast.downloaded = True
                 user_broadcast.save()
+                broadcast.downloads_count += 1
+                broadcast.save()
                 return Response({'message': 'Broadcast downloaded!'}, status=status.HTTP_200_OK)
 
             if request.data.get('listen'):
