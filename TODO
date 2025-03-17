@@ -1,0 +1,21 @@
+# UserAuthenticatedHomePage
+DONE the listed channels should have name,fm,and country
+
+DONE make user-authenticated-home-page a protected route
+DONE a link to user-authenticated-home-page(dashboard)
+DONE a link to the users profile(in the header preferablly)
+-- when a channel is clicked on, it should filter the brodacasts
+-- the user-authenticated-home-page should be more visually appealing
+    -- brodacasts should be sorted from the newest, infinite scrolling
+    DONE colors to indicate if it has been listened to or not
+    -- probably and <hr> to indicates most recent and <hr> past/old/listened to
+    DONE an icon/button for listen now/ download
+DONE the brodacasts should be clickable and take you to the PlayPage.js
+-- a section to see downloaded/bookmarked/listened to broadcasts
+-- Like Button of the UseAuthenticatedLandingPage
+-- Listen Now changes to Listen Again(and color too) if Listened to in Playpage
+-- Download button changes too if downloaded
+
+# PlayingPage
+-- Download
+-- Like
